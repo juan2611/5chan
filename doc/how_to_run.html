@@ -1,0 +1,51 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>How to run</title>
+	<link rel="stylesheet" href="./style.css">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<h1>*Assuming you are running these commands at the root of this repo</h1>
+
+	<h2>To run the front-end (client)</h2>
+	<p>1. Unpack <code>client.tar.gz</code><br>2. Configure HTTP server to serve client/index.html<br>3. Run the
+		following in the terminal:</p>
+	<code>cd src/Frontend</code><br>
+	<code>npm install</code><br>
+	<code>npm start</code><br>
+
+	<h2>Before running any of the following, note:</h2>
+	<p>For each service package<br>1. Unpack every <code>.tar.gz</code><br>2. Change into the extracted directory
+		<br>3. Run <code>init.sh</code>
+	</p>
+	<p>To start, run <code>start.sh</code></p>
+	<p>To stop, run <code>stop.sh</code></p>
+
+	<h2>To run the back-end</h2>
+	<code>cd src/Backend</code><br>
+	<code>python3 -m venv venv</code><br>
+	<code>source env/bin/activate</code><br>
+	<code>pip3 install flask</code><br>
+	<code>pip3 install dataset</code><br>
+	<code>pip3 install PyJWT </code><br>
+	<p><code>python3 [file].py</code>, where <code>[file]</code> is every file in this folder</p>
+	<p>Configuration file is at <a href="../src/Backend/config.py">config.py</a>.</p>
+
+	<h2>To run the media server</h2>
+	<code>cd src/Media</code><br>
+	<code>python3 -m venv ./venv</code><br>
+	<code>source ./venv/bin/activate</code><br>
+	<code>pip3 install -r requirement.txt</code><br>
+	<code>./start</code><br>
+	<p>Configuration file is at <a href="../src/Media/config.py">config.py</a>.</p>
+	<p>Files will be stored in <code>src/Media/files/</code>; database in <code>src/Media/local/</code></p>
+</body>
+
+</html>

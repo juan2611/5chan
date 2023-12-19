@@ -1,0 +1,99 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Technician's guide</title>
+	<link rel="stylesheet" href="./style.css">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<h1>Technician's guide</h1>
+
+	<h2>Description</h2>
+	<p>This is the technician's guide on 5chan, containing policies and guidance to the project. </p>
+	<p>For the user's manual, see <a href="./user.html">user's manual</a></p>
+	<p>For the programming interface, see <a href="./API_doc.html">the API documentation</a>.</p>
+	<p>For how to run the code, see <a href="./how_to_run.html">this</a>.</p>
+
+	<h2>Summary</h2>
+	<p>On registering/logging in, the user will be taken to the landing page. This page contains a list of all the posts
+		made on the website with the latest at the top. Here, the user can either create a new post or interact with an
+		existing post by opening it.</p>
+	<p>Clicking on a post will take the user to the post page. This page contains a list of all the comments made on
+		that post. The user can add comments here.</p>
+	<p>The right top of each page contains the username tab. On clicking this gives the user a link to logout or go to
+		his profile page.</p>
+	<p>The user's Profile Page contains details about the user. It will also list the posts and the comments that the
+		user has made.</p>
+
+	<h2>Servers</h2>
+	<b>Authentication Server</b><br>
+	<p>The basic responsibility of the authentication server is to store a database called “USERS_AUTH” and to validate
+		authenticity when a user tries to login, using this database. Once validated, the server will issue the user an
+		encrypted token, which will be the user_id and each of the user's privileges, all separated by colons. Eg:
+		“001:read:post:comment:media”.</p>
+	<p>The USERS_AUTH database will store information limited to authenticating the user and providing its privilege
+		information to generate the token</p>
+
+	<b>Resource Servers</b>
+	<p>The basic responsibility of the resource servers is to store the content in separate databases:</p>
+	<ul>
+		<li>USERS_RESOURCE</li>
+		<p>Contains detailed information about the users. Will be used to fetch information for the profile page</p>
+		<li>POSTS</li>
+		<p>Contains detailed information about the posts</p>
+		<li>COMMENTS</li>
+		<p>Contains detailed information about the comments</p>
+		<li>MEDIA</li>
+		<p>Stores the media files with information on its uploader and the related post</p>
+	</ul>
+	<p>The resource server will decrypt the user's token, check whether it conforms to the token structure and allows
+		the user to perform actions correspondingly.</p>
+
+	<b>Communication</b>
+	<p>All servers & clients will be communicating with each other using HTTP request methods. The client (front-end) is
+		only going to use POST and GET (minimal security features). The servers (back-end) have more freedom with the
+		allowance of DELETE and PUT. The encoding of all communication messages will be, naturally, HTTP
+		requests/responses. </p>
+	<p>Since we are not using CONNECT, all requests & responses will be one-way. Therefore, the client will not be
+		always connected with any of the servers. </p>
+
+
+	<h2>Access Policies</h2>
+	<p>The Users can be of the following types:</p>
+	<ul>
+		<li>Admins</li>
+		<p>Can change the user's privilege group + all functions of a moderator</p>
+		<li>Moderators</li>
+		<p>Can erase comments and posts which seem unhygienic + all functions of a user</p>
+		<li>Users</li>
+		<p>Can create posts and comment on other posts along with attached media files</p>
+		<li>Deprivated users</li>
+		<p>Can create posts and comment on other posts without media files</p>
+	</ul>
+	<p>We will be storing user privilege (see <code><a href="../src/Backend/user.py">create_user_api()</a></code>) by
+		POST to the resource server's database.</p>
+
+	<b>Storage</b>
+	<p>Data is stored in 2 parts: plaintext and media (pictures, including .gif). All will be stored on the RS.
+		Plaintext will be stored with functions in the <code>src/Backend</code> folder, utilizing Flask databse; Media
+		will be stored with functions in the <code>src/Media</code> folder, utilizing SQL Alchemy databse. Since there
+		is a GUID associated with each post, there won't be any conflicts. The same goes for media files: there is a
+		UUID genereated for every media file.</p>
+
+	<b>User Identification</b>
+	<p>User registers with a username (<code>userValue</code> in <a href="../src/Frontend/src/Register.js">posts()</a>),
+		this will also generate an GUID (<code>userID</code> in <a href="../src/Frontend/src/Register.js">posts()</a>).
+		The username will be sent over to AS; the UUID will be sent over to RS.</p>
+	<p>When user login with username, it will check if there is a match in AS. If there is a match, login succesful. The
+		client will receive a confirmation and grab all info related to the user. Then, a token (stored locally with
+		client as cookie) will be generated to access specific resources. </p>
+
+</body>
+
+</html>

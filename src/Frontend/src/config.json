@@ -1,0 +1,7 @@
+{
+    "comment_host": "http://localhost:4003",
+    "login_host": "http://localhost:4000",
+    "post_host": "http://localhost:4001",
+    "user_host": "http://localhost:4002",
+    "media_host": "http://localhost:4004"
+}

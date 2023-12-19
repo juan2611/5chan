@@ -1,0 +1,255 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>API Documentation</title>
+	<link rel="stylesheet" href="./API.css">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300&family=Source+Code+Pro:wght@300&display=swap"
+		rel="stylesheet">
+</head>
+
+<body>
+	<h1>API Documentation</h1>
+	<p>REST architectural style</p>
+
+	<h3>QUERY PARAMETERS</h3>
+	<h4>USER APIs</h4>
+	<table>
+		<thead>
+			<tr>
+				<th>Function Name</th>
+				<th>HTTP Request Method</th>
+				<th>Return</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>get_user</td>
+				<td>GET</td>
+				<td>A list of all users using 5chan</td>
+				<td>Input: none</td>
+			</tr>
+			<tr>
+				<td>get_user</td>
+				<td>GET</td>
+				<td>The user</td>
+				<td>A getter function, input: <code>user_id</code></td>
+			</tr>
+			<tr>
+				<td>create_user</td>
+				<td>POST</td>
+				<td>None</td>
+				<td>Creates a new user</td>
+			</tr>
+			<tr>
+				<td>delete_user</td>
+				<td>DELETE</td>
+				<td>None</td>
+				<td>Deletes the user of <code>user_id</code></td>
+			</tr>
+			<tr>
+				<td>update_user</td>
+				<td>PUT</td>
+				<td>None</td>
+				<td>Updates details of user of <code>user_id</code></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h4>POST APIs</h4>
+	<p>* Not to be confused with <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST">POST</a>, the
+		HTTP request method.</p>
+	<table>
+		<thead>
+			<tr>
+				<th>Function Name</th>
+				<th>HTTP Request Method</th>
+				<th>Return</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>get_posts</td>
+				<td>GET</td>
+				<td>List of posts <br>(in descending order of timestamp)</td>
+				<td>For the main page</td>
+			</tr>
+			<tr>
+				<td>get_post</td>
+				<td>GET</td>
+				<td>The post</td>
+				<td>A getter function, input: <code>post_id</code></td>
+			</tr>
+			<tr>
+				<td>get_post_by_user</td>
+				<td>GET</td>
+				<td>All posts for the user</td>
+				<td>Input: <code>user_id</code></td>
+			</tr>
+			<tr>
+				<td>create_post</td>
+				<td>POST</td>
+				<td>None</td>
+				<td>Creates a new post by user</td>
+			</tr>
+			<tr>
+				<td>delete_post</td>
+				<td>DELETE</td>
+				<td>None</td>
+				<td>Deletes the post of <code>post_id</code></td>
+			</tr>
+			<tr>
+				<td>update_post</td>
+				<td>PUT</td>
+				<td>None</td>
+				<td>Updates the post of <code>post_id</code></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h4>COMMENT APIs</h4>
+	<table>
+		<thead>
+			<tr>
+				<th>Function Name</th>
+				<th>HTTP Request Method</th>
+				<th>Return</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>get_comments</td>
+				<td>GET</td>
+				<td>All comments for the post</td>
+				<td>Input: <code>post_id</code></td>
+			</tr>
+			<tr>
+				<td>get_comments</td>
+				<td>GET</td>
+				<td>All comments for the user</td>
+				<td>Input: <code>user_id</code></td>
+			</tr>
+			<tr>
+				<td>get_comment</td>
+				<td>GET</td>
+				<td>The comment</td>
+				<td>A getter function, input: <code>comment_id</code></td>
+			</tr>
+			<tr>
+				<td>create_comment</td>
+				<td>POST</td>
+				<td>None</td>
+				<td>Creates a new comment for a post</td>
+			</tr>
+			<tr>
+				<td>delete_comment</td>
+				<td>DELETE</td>
+				<td>None</td>
+				<td>Deletes the comment of <code>comment_id</code></td>
+			</tr>
+			<tr>
+				<td>update_comment</td>
+				<td>PUT</td>
+				<td>None</td>
+				<td>Updates the comment of <code>comment_id</code></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h4>MEDIA APIs</h4>
+	<table>
+		<thead>
+			<tr>
+				<th>Function Name</th>
+				<th>HTTP Request Method</th>
+				<th>Return</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>upload_photo</td>
+				<td>POST</td>
+				<td>URL to the photo</td>
+				<td>Store the file in the form data as a photo with the specified filename</td>
+			</tr>
+			<tr>
+				<td>get_photo_by_post</td>
+				<td>POST</td>
+				<td>URL to the photo</td>
+				<td>Query the post_id</td>
+			</tr>
+			<tr>
+				<td>get_photo</td>
+				<td>GET</td>
+				<td>File of the photo</td>
+				<td>Take the <code>media_id</code> and <code>filename</code></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h4>AUTHENTICATION APIs</h4>
+	<table>
+		<thead>
+			<tr>
+				<th>Function Name</th>
+				<th>HTTP Request Method</th>
+				<th>Return</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>login</td>
+				<td>POST</td>
+				<td>String token</td>
+				<td>Only return if username and password matches that can be used for accessing resource servers</td>
+			</tr>
+			<tr>
+				<td>register</td>
+				<td>POST</td>
+				<td>None</td>
+				<td>Create a user entry using the data stored in <code>user_data</code></td>
+			</tr>
+			<tr>
+				<td>give_access</td>
+				<td>POST</td>
+				<td>None</td>
+				<td>Adds access to <code>resource_type</code> for user with <code>user_id</code></td>
+			</tr>
+			<tr>
+				<td>get_user</td>
+				<td>GET</td>
+				<td>User information<br>(publicly available)</td>
+				<td>Input: <code>user_id</code> in a <code>user_data</code> object</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h3>Special Data Types</h3>
+	<p><b>token</b>: a string object that contains <code>user_id</code>, each of the user's privileges, all sparated by
+		colons, e.g. <code>001:read:post:comment:media</code>.</p>
+	<p>Every response should contain a field "result" that returns "success" when success, "failed" when failed, and a
+		field "message" that contains the error details. </p>
+	<p><b>Post</b>: a map object with fields: <code>user_id</code>, <code>title</code>, <code>content</code>,
+		<code>timestamp</code>, a list of <code>comment_id</code>s.
+	</p>
+	<p><b>Post_detail</b>: a map object, with fields: <code>user_id</code>, <code>title</code>, <code>content</code>,
+		<code>timestamp</code>.
+	</p>
+	<p><b>Comment</b>: a map object, with fields: <code>post_id</code>, <code>user_id</code>, <code>content</code>,
+		<code>timestamp</code>.
+	</p>
+	<p><b>User_data</b>: a map object, with fields: <code>username</code>, <code>password</code>.</p>
+
+</body>
+
+</html>

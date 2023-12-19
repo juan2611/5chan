@@ -1,0 +1,75 @@
+body {
+  background-size: 100%;
+  background-image: url('background.jpeg');
+}
+
+div {
+  background-color:#ffffff;
+}
+
+.App {
+  text-align: center;
+}
+
+.Title {
+  font-size: 40px;
+  font-weight: bold;
+  position: relative;
+  top: 40px;
+}
+
+.Name-label {
+  text-align: left;
+  font-size: 15px;
+  position: relative;
+  top: 100px;
+  left: 50px;
+  width: 150px;
+  line-height: 30px;
+  display: flex;
+}
+
+.Username-label {
+  text-align: left;
+  font-size: 15px;
+  position: relative;
+  top: 100px;
+  left: 50px;
+  width: 300px;
+  line-height: 30px;
+}
+
+.Password-label {
+  text-align: left;
+  font-size: 15px;
+  position: relative;
+  top: 120px;
+  left: 50px;
+  width: 300px;
+  line-height: 30px;
+}
+
+.Submit {
+  text-align: left;
+  position: relative;
+  left: 50px;
+  width: 100px;
+  top: 150px;
+}
+
+.Link-out {
+  text-align: left;
+  position: relative;
+  left: 50px;
+  width: 300px;
+  top: 160px;
+}
+
+.Info {
+  text-align: left;
+  font-size: 20px;
+  position: relative;
+  left: 50px;
+  width: 300px;
+  top: 70px;
+}
